@@ -1,0 +1,584 @@
+index.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 span {
+      color: #00204a;
+    }
+
+    .product-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 32, 74, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: bounceIn 0.6s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(0, 32, 74, 0.4);
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      60% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes glow {
+      0%   { box-shadow: 0 0 0px #00204a; }
+      50%  { box-shadow: 0 0 15px #00204a; }
+      100% { box-shadow: 0 0 0px #00204a; }
+    }
+
+    .glow-effect {
+      animation: glow 0.8s ease-in-out;
+    }
+
+    .action-container {
+      height: 50px;
+      width: 100%;
+    }
+
+    .btn-add {
+      background-color: #00204a;
+      color: white;
+      width: 100%;
+      height: 100%;
+      font-size: 1.2rem;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-add:hover {
+      background-color: #ffffff;
+      color: #00204a;
+      border: 2px solid #00204a;
+    }
+
+    .quantity-controls {
+      height: 100%;
+      background-color: #ffffff;
+      border: 2px solid #00204a;
+      color: #00204a;
+      border-radius: 6px;
+      font-size: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+    }
+
+    .quantity-controls button {
+      background: none;
+      border: none;
+      color: #00204a;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .quantity-controls button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 2px solid #00204a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .cart-bar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .btn-cart {
+      background-color: #00204a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-cart:hover {
+      background-color: #ffffff;
+      color: #00204a;
+    }
+
+    .cart-bar.d-none {
+      display: none !important;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .cart-bounce {
+      animation: bounce 0.5s ease;
+    }
+
+    @media (max-width: 767px) {
+      .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container mt-4 mb-5">
+    <h2 class="text-center mb-4"><span>Our</span> <span style="color: #00aaff;">Products</span></h2>
+    <div class="row" id="productContainer"></div>
+  </div>
+
+  <!-- Floating Cart Bar -->
+  <div class="cart-bar d-none" id="cartBar">
+    <div class="d-flex align-items-center">
+      <img src="https://png.pngtree.com/element_our/sm/20180620/sm_5b29c1dab1cf4.png" alt="Cart Icon" id="cartIcon">
+      <div class="ml-2">
+        <strong id="cartCount">0 Item(s)</strong>
+        <div id="cartSavings" class="text-success small">You save ₹0</div>
+      </div>
+    </div>
+    <a href="./checkout.html" class="btn btn-cart">Go to cart</a>
+  </div>
+
+<script>
+  const products = [
+    {
+      id: 1,
+      name: "E Commerce Tech",
+      description: "A complete solution for online store integration.",
+      price: 50,
+      originalPrice: 55,
+      discount: 9,
+      image: "https://img.freepik.com/premium-photo/ecommerce-concept-flat-isometric-vector-illustration_734610-17547.jpg"
+    },
+    {
+      id: 2,
+      name: "School Tech",
+      description: "Empowering digital education platforms and tools.",
+      price: 60,
+      originalPrice: 65,
+      discount: 8,
+      image: "https://img.freepik.com/premium-photo/3d-flat-icon-environmental-education-concept-books-apps-focused-teaching-sustainability-with_980716-69679.jpg"
+    }
+  ];
+
+  const cart = {};
+
+  // Restore cart from sessionStorage if exists
+  const storedCart = JSON.parse(sessionStorage.getItem("cart"));
+  if (storedCart) {
+    Object.assign(cart, storedCart);
+  }
+
+  function updateCartBar() {
+    const cartBar = document.getElementById('cartBar');
+    const cartCount = document.getElementById('cartCount');
+    const cartSavings = document.getElementById('cartSavings');
+    const cartIcon = document.getElementById('cartIcon');
+
+    const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+    const totalSavings = Object.values(cart).reduce((sum, item) => sum + ((item.originalPrice - item.price) * item.quantity), 0);
+
+    if (totalItems > 0) {
+      cartBar.classList.remove('d-none');
+      cartCount.textContent = `${totalItems} Item(s)`;
+      cartSavings.textContent = `You save ₹${totalSavings}`;
+
+      cartIcon.classList.add('cart-bounce');
+      setTimeout(() => cartIcon.classList.remove('cart-bounce'), 500);
+    } else {
+      cartBar.classList.add('d-none');
+    }
+  }
+
+  function renderProducts() {
+    const container = document.getElementById('productContainer');
+    container.innerHTML = '';
+
+    products.forEach((p) => {
+      const col = document.createElement('div');
+      col.className = 'col-md-6 mb-4 d-flex';
+
+      const card = document.createElement('div');
+      card.className = 'card product-card flex-fill';
+
+      card.innerHTML = `
+        <img src="${p.image}" class="card-img-top" alt="${p.name}">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="card-title font-weight-bold">${p.name}</h5>
+            <p class="text-muted small">${p.description}</p>
+            <h6>₹${p.price} <s class="text-muted">₹${p.originalPrice}</s>
+            <span class="badge badge-warning ml-2">${p.discount}% OFF</span></h6>
+          </div>
+          <div id="product-controls-${p.id}" class="action-container mt-3">
+            <button class="btn btn-add" onclick="addToCart(${p.id})">Add</button>
+          </div>
+        </div>
+      `;
+
+      col.appendChild(card);
+      container.appendChild(col);
+    });
+  }
+
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!cart[id]) {
+      cart[id] = { ...product, quantity: 1 };
+    }
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    updateProductControls(id);
+    updateCartBar();
+
+    const card = document.querySelector(`#product-controls-${id}`).closest('.product-card');
+    card.classList.add('glow-effect');
+    setTimeout(() => card.classList.remove('glow-effect'), 800);
+  }
+
+  function increaseQuantity(id) {
+    cart[id].quantity++;
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    updateProductControls(id);
+    updateCartBar();
+  }
+
+  function decreaseQuantity(id) {
+    if (cart[id].quantity > 1) {
+      cart[id].quantity--;
+    } else {
+      delete cart[id];
+    }
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    updateProductControls(id);
+    updateCartBar();
+  }
+
+  function updateProductControls(id) {
+    const container = document.getElementById(`product-controls-${id}`);
+    const item = cart[id];
+
+    if (!item) {
+      container.innerHTML = `<button class="btn btn-add w-100" onclick="addToCart(${id})">Add</button>`;
+    } else {
+      container.innerHTML = `
+        <div class="quantity-controls w-100">
+          <button onclick="decreaseQuantity(${id})">−</button>
+          <span>${item.quantity}</span>
+          <button onclick="increaseQuantity(${id})">+</button>
+        </div>
+      `;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
+
+    // After rendering, restore control buttons from cart
+    if (storedCart) {
+      Object.keys(cart).forEach(id => {
+        updateProductControls(id);
+      });
+      updateCartBar();
+    }
+  });
+</script>
+
+</body>
+</html>
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+checkout.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .cart-item {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 32, 74, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 32, 74, 0.35);
+}
+
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 15px;
+    }
+
+    .remove-btn {
+      color: #dc3545;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .summary {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 32, 74, 0.2);
+    }
+
+    .btn-primary,
+    .btn-outline-secondary {
+      width: 100%;
+    }
+
+    #emptyCartMessage {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    #emptyCartMessage h4 {
+      color: #00204a;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Checkout</h2>
+    <div id="cartContainer"></div>
+
+    <div id="emptyCartMessage" style="display: none;">
+      <h4>Your cart is empty</h4>
+      <a href="index.html" class="btn btn-primary back-link">Back to Products</a>
+    </div>
+  </div>
+
+  <script>
+    
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || {};
+
+    function renderCart() {
+      const container = document.getElementById("cartContainer");
+      container.innerHTML = "";
+
+      const items = Object.values(cart);
+      if (items.length === 0) {
+        container.style.display = "none";
+        document.getElementById("emptyCartMessage").style.display = "block";
+        return;
+      }
+
+      let totalItems = 0, totalPrice = 0, totalSaved = 0;
+
+      items.forEach((item, index) => {
+        totalItems += item.quantity;
+        totalPrice += item.price * item.quantity;
+        totalSaved += (item.originalPrice - item.price) * item.quantity;
+
+        const row = document.createElement("div");
+        row.className = "cart-item d-flex align-items-center justify-content-between";
+
+        row.innerHTML = `
+          <div class="d-flex align-items-center">
+            <img src="${item.image}" alt="${item.name}">
+            <div>
+              <h5>${item.name}</h5>
+              <p class="mb-1">Qty: ${item.quantity} × ₹${item.price}</p>
+              <p class="mb-0 text-success">You save ₹${(item.originalPrice - item.price) * item.quantity}</p>
+            </div>
+          </div>
+          <span class="remove-btn" onclick="removeItem(${index})">&times;</span>
+        `;
+
+        container.appendChild(row);
+      });
+
+      const summary = document.createElement("div");
+      summary.className = "summary mt-4";
+
+      summary.innerHTML = `
+        <p><strong>Total Items:</strong> ${totalItems}</p>
+        <p><strong>Total Price:</strong> ₹${totalPrice}</p>
+        <p class="text-success"><strong>You Saved:</strong> ₹${totalSaved}</p>
+        <button class="btn btn-primary mb-2" onclick="placeOrder()">Place Order</button>
+        <a href="index.html" class="btn btn-outline-secondary">Back to Products</a>
+      `;
+
+      container.appendChild(summary);
+    }
+
+    function removeItem(index) {
+      const keys = Object.keys(cart);
+      delete cart[keys[index]];
+      sessionStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function placeOrder() {
+      if (Object.keys(cart).length === 0) return;
+      window.location.href = "payment.html";
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+payment.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container my-5">
+    <h3 class="mb-4">Choose Payment Method</h3>
+
+    <form id="paymentForm">
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="payment" value="UPI" id="upi" checked />
+        <label class="form-check-label" for="upi">UPI ID</label>
+      </div>
+
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="payment" value="Google Pay" id="gpay" />
+        <label class="form-check-label" for="gpay">Google Pay</label>
+      </div>
+
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="payment" value="PhonePe" id="phonepe" />
+        <label class="form-check-label" for="phonepe">PhonePe</label>
+      </div>
+
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="radio" name="payment" value="Card" id="card" />
+        <label class="form-check-label" for="card">Credit/Debit Card</label>
+      </div>
+
+      <button type="submit" class="btn btn-success">Pay Now</button>
+    </form>
+
+    <div id="confirmation" class="mt-4 text-success font-weight-bold d-none">
+      ✅ Your order is placed!
+    </div>
+
+    <div id="backHome" class="mt-3 d-none">
+      <a href="index.html" class="btn btn-outline-primary">Return to Products</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("paymentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Simulate payment process
+      document.getElementById("confirmation").classList.remove("d-none");
+      document.getElementById("backHome").classList.remove("d-none");
+
+      // Clear cart
+      localStorage.removeItem("cart");
+    });
+  </script>
+</body>
+</html>
+
+
+
+payment.css:
+
+    .payment-option {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .payment-option:hover {
+      background-color: #f8f9fa;
+      border-color: #28a745;
+    }
+
+    .payment-option input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .pay-btn {
+      margin-top: 20px;
+    }
+
+
+payment.js:
+
+  function goBack() {
+    window.location.href = "checkout.html";
+  }
+
+  document.getElementById("paymentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    localStorage.removeItem("cart");
+
+    alert("✅ Your order has been placed!");
+    window.location.href = "index.html";
+  });

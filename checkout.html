@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/logo.png" type="">
+
+  <title> MarsMate AI </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+     .checkout-item {
+    background-color: #fff;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: none;
+  }
+
+  .checkout-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px 5px #00204a; /* same glow as quantity box */
+  }
+
+  .quantity-box {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 1rem;
+    color: #00204a;
+    background-color: transparent;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .quantity-box:hover {
+    box-shadow: 0 0 10px #00204a;
+  }
+
+  .quantity-box button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0 6px;
+    cursor: pointer;
+    color: #00204a;
+  }
+
+    .quantity-box button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .summary-card {
+      margin-top: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .summary-card .card-header {
+      background-color: #00204a;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .summary-card .card-body .row > div:first-child {
+      font-weight: bold;
+    }
+
+    .btn-place-order {
+      background-color: #00204a;
+      color: #ffffff;
+      border: none;
+      width: 100%;
+      font-size: 1.2rem;
+    }
+
+    .btn-place-order:hover {
+      background-color: #001d40;
+    }
+
+    .btn-back {
+      background-color: #ffffff;
+      color: #00204a;
+      border: 1px solid #00204a;
+      width: 100%;
+      font-size: 1.2rem;
+    }
+
+    .btn-back:hover {
+      background-color: #f1f1f1;
+    }
+
+    .empty-cart {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .empty-cart img {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart a {
+      margin-top: 20px;
+    }
+  </style>
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+    <!-- header section strats -->
+    <nav class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+            MarsMate AI 
+            </span>
+          </a>
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="why.html">Why Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Login</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Sign Up</a> 
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </nav>
+    <!-- end header section -->
+
+  </div>
+
+  <!-- why section -->
+
+  <div class="container my-5">
+    <h3 class="text-center mb-4">Your Cart</h3>
+    <div id="checkoutItems"></div>
+
+    <!-- Summary Section in Card -->
+    <div id="summarySection" class="d-none">
+      <div class="card summary-card">
+        <div class="card-header">Order Summary</div>
+        <div class="card-body">
+          <div id="itemBreakdown" class="mb-3"></div>
+          <div class="row mb-2">
+            <div class="col-6">Total Items:</div>
+            <div class="col-6 text-right" id="totalItems">0</div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-6">Total Price:</div>
+            <div class="col-6 text-right" id="totalPrice">₹0</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-6 text-success">You Saved:</div>
+            <div class="col-6 text-success text-right" id="totalSaved">₹0</div>
+          </div>
+          <button class="btn btn-place-order mb-3" onclick="placeOrder()">Place Order</button>
+          <a href="productpage.html" class="btn btn-back">Back to Products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty Cart Message -->
+    <div id="emptyMessage" class="empty-cart d-none">
+      <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="Empty Cart" />
+      <h5>Your cart is empty</h5>
+      <a href="./productpage.html" class="btn btn-back mt-3">Back to Products</a>
+    </div>
+  </div>
+
+  <!-- end why section -->
+
+ <!-- info section -->
+ <section class="info_section layout_padding2">
+  <div class="container">
+    <div class="row">
+    <div class="col-5 col-lg-6  text-center  d-none d-sm-block">
+      <img src="./images/logo.png" class="footer-logo d-none d-sm-block" />
+      <h1 class="footer-section-mail-id"></h1>
+    </div>
+    <div class="col-5 col-lg-6  text-center  d-block d-sm-none">
+      <img src="./images/logo.png" class="footer-logo-2 d-block d-sm-none" />
+      <h1 class="footer-section-mail-id"></h1>
+    </div>
+    <div class="col-4 col-lg-3 info_col">
+      <div class="info_contact">
+        <h4>
+          Address
+        </h4>
+        <div class="contact_link_box">
+          <a href="">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <span class="contact-info">
+              H.No: 8-2-293/ Plot No - 26, 2nd Floor, Banjara Hills, Srinagar Colony, Khairabad, Hyderabad - 500073, Telangana
+            </span>
+          </a>
+          <a href="">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span class="contact-info">
+              Call +91-94403 75356 
+            </span>
+          </a>
+          <a href="">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span class="contact-info">
+              founder@mars-mate.com
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="info_social">
+        <a href="https://youtube.com/@marsmatebusinessintelligencepr?si=yvi-DnIrY3Sh6sKs">
+          <i class="fa fa-youtube" aria-hidden="true"> </i>
+        </a>
+        <a href="https://x.com/MarsmatePvtLtd?t=xH3qpcFi_9saur5qQ8NywA&s=08">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/marsmate-business-intelligence-private-limited-698696361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/marsmatebipvt?utm_source=qr&igsh=N2Jhb3lnaXRtMG15">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>      
+      <div class="col-3 col-lg-3 mx-auto info_col">
+        <div class="info_link_box">
+          <h4>
+            Links
+          </h4>
+          <div class="info_links">
+            <a class="active" href="index.html">
+              Home
+            </a>
+            <a class="" href="about.html">
+              About
+            </a>
+            <a class="" href="service.html">
+              Services
+            </a>
+            <a class="" href="why.html">
+              Why Us
+            </a>
+            <a class="" href="team.html">
+              Our Clients
+            </a>
+            <a class="" href="./productpage.html">
+              Products
+            </a>
+          </div>
+        </div>
+      </div>
+     <!-- <div class="col-md-6 col-lg-3 info_col ">
+        <h4>
+          Subscribe
+        </h4>
+        <form action="#">
+          <input type="text" placeholder="Enter email">
+          <button type="submit">
+            Subscribe
+          </button>
+        </form>
+      </div>-->
+    </div>
+  </div>
+</section>
+<!-- end info section -->
+
+<!-- footer section -->
+<section class="footer_section">
+  <div class="container">
+    <p>
+      © All Rights Reserved By
+      <a href="https://html.design/">MarsMate Business Intelligence pvt. Ltd.</a>
+    </p>
+  </div>
+</section>
+<!-- footer section -->
+
+  <!-- jQery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+     <script>
+    let cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+
+    function updateCheckoutUI() {
+      const container = document.getElementById('checkoutItems');
+      const summarySection = document.getElementById('summarySection');
+      const emptyMessage = document.getElementById('emptyMessage');
+      const itemBreakdown = document.getElementById('itemBreakdown');
+
+      container.innerHTML = '';
+      itemBreakdown.innerHTML = '';
+
+      let totalItems = 0;
+      let totalPrice = 0;
+      let totalSaved = 0;
+
+      if (Object.keys(cart).length === 0) {
+        summarySection.classList.add('d-none');
+        emptyMessage.classList.remove('d-none');
+        return;
+      }
+
+      summarySection.classList.remove('d-none');
+      emptyMessage.classList.add('d-none');
+
+      for (let id in cart) {
+        const item = cart[id];
+        const productTotal = item.quantity * item.price;
+        const savings = item.quantity * (item.originalPrice - item.price);
+        totalItems += item.quantity;
+        totalPrice += productTotal;
+        totalSaved += savings;
+
+        // Item UI
+        const html = `
+          <div class="checkout-item d-flex justify-content-between align-items-center mb-4 p-3">
+            <div class="d-flex align-items-center">
+              <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; border-radius: 8px; object-fit: cover; margin-right: 15px;">
+              <div>
+                <h6 class="mb-1 font-weight-bold">${item.name}</h6>
+              </div>
+            </div>
+            <div class="text-right">
+              <h6 class="text-primary mb-2">₹${productTotal}</h6>
+              <div class="quantity-box">
+                <button onclick="decreaseQuantity(${id})">−</button>
+                ${item.quantity}
+                <button onclick="increaseQuantity(${id})">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += html;
+
+        // Summary breakdown line
+        itemBreakdown.innerHTML += `
+          <div class="row mb-1">
+            <div class="col-6">${item.quantity} × ${item.name}</div>
+            <div class="col-6 text-right">₹${productTotal}</div>
+          </div>
+        `;
+      }
+
+      document.getElementById('totalItems').textContent = totalItems;
+      document.getElementById('totalPrice').textContent = `₹${totalPrice}`;
+      document.getElementById('totalSaved').textContent = `₹${totalSaved}`;
+    }
+
+    function increaseQuantity(id) {
+      cart[id].quantity++;
+      sessionStorage.setItem('cart', JSON.stringify(cart));
+      updateCheckoutUI();
+    }
+
+    function decreaseQuantity(id) {
+      if (cart[id].quantity > 1) {
+        cart[id].quantity--;
+      } else {
+        delete cart[id];
+      }
+      sessionStorage.setItem('cart', JSON.stringify(cart));
+      updateCheckoutUI();
+    }
+
+    function placeOrder() {
+      window.location.href = 'payment.html';
+    }
+
+    document.addEventListener("DOMContentLoaded", updateCheckoutUI);
+  </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+    .payment-option {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .payment-option:hover {
+      background-color: #f8f9fa;
+      border-color: #28a745;
+    }
+
+    .payment-option input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .pay-btn {
+      margin-top: 20px;
+    }

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/logo.png" type="">
+
+  <title> MarsMate AI </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 span {
+      color: #00204a;
+    }
+
+    .product-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 32, 74, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: bounceIn 0.6s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(0, 32, 74, 0.4);
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      60% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes glow {
+      0%   { box-shadow: 0 0 0px #00204a; }
+      50%  { box-shadow: 0 0 15px #00204a; }
+      100% { box-shadow: 0 0 0px #00204a; }
+    }
+
+    .glow-effect {
+      animation: glow 0.8s ease-in-out;
+    }
+
+    .action-container {
+      height: 50px;
+      width: 100%;
+    }
+
+    .btn-add {
+      background-color: #00204a;
+      color: white;
+      width: 100%;
+      height: 100%;
+      font-size: 1.2rem;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-add:hover {
+      background-color: #ffffff;
+      color: #00204a;
+      border: 2px solid #00204a;
+    }
+
+    .quantity-controls {
+      height: 100%;
+      background-color: #ffffff;
+      border: 2px solid #00204a;
+      color: #00204a;
+      border-radius: 6px;
+      font-size: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+    }
+
+    .quantity-controls button {
+      background: none;
+      border: none;
+      color: #00204a;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .quantity-controls button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 2px solid #00204a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+
+    .cart-bar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .btn-cart {
+      background-color: #00204a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-cart:hover {
+      background-color: #ffffff;
+      color: #00204a;
+    }
+
+    .cart-bar.d-none {
+      display: none !important;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .cart-bounce {
+      animation: bounce 0.5s ease;
+    }
+
+  .product-image {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  </style>
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+    <!-- header section strats -->
+    <nav class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+            MarsMate AI 
+            </span>
+          </a>
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="why.html">Why Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact Us</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Login</a> 
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Sign Up</a> 
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </nav>
+    <!-- end header section -->
+
+  </div>
+
+  <!-- why section -->
+
+  <div class="container mt-4 mb-5">
+    <h2 class="text-center mb-4"><span>Our</span> <span style="color: #00aaff;">Products</span></h2>
+    <div class="row justify-content-center" id="productContainer"></div>
+  </div>
+
+  <!-- Floating Cart Bar -->
+  <div class="cart-bar d-none" id="cartBar">
+    <div class="d-flex align-items-center">
+      <img src="https://png.pngtree.com/element_our/sm/20180620/sm_5b29c1dab1cf4.png" alt="Cart Icon" id="cartIcon">
+      <div class="ml-2">
+        <strong id="cartCount">0 Item(s)</strong>
+        <div id="cartSavings" class="text-success small">You save ₹0</div>
+      </div>
+    </div>
+    <a href="./checkout.html" class="btn btn-cart">Go to cart</a>
+  </div>
+
+  <!-- end why section -->
+
+ <!-- info section -->
+ <section class="info_section layout_padding2">
+  <div class="container">
+    <div class="row">
+    <div class="col-5 col-lg-6  text-center  d-none d-sm-block">
+      <img src="./images/logo.png" class="footer-logo d-none d-sm-block" />
+      <h1 class="footer-section-mail-id"></h1>
+    </div>
+    <div class="col-5 col-lg-6  text-center  d-block d-sm-none">
+      <img src="./images/logo.png" class="footer-logo-2 d-block d-sm-none" />
+      <h1 class="footer-section-mail-id"></h1>
+    </div>
+    <div class="col-4 col-lg-3 info_col">
+      <div class="info_contact">
+        <h4>
+          Address
+        </h4>
+        <div class="contact_link_box">
+          <a href="">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <span class="contact-info">
+              H.No: 8-2-293/ Plot No - 26, 2nd Floor, Banjara Hills, Srinagar Colony, Khairabad, Hyderabad - 500073, Telangana
+            </span>
+          </a>
+          <a href="">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span class="contact-info">
+              Call +91-94403 75356 
+            </span>
+          </a>
+          <a href="">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span class="contact-info">
+              founder@mars-mate.com
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="info_social">
+        <a href="https://youtube.com/@marsmatebusinessintelligencepr?si=yvi-DnIrY3Sh6sKs">
+          <i class="fa fa-youtube" aria-hidden="true"> </i>
+        </a>
+        <a href="https://x.com/MarsmatePvtLtd?t=xH3qpcFi_9saur5qQ8NywA&s=08">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/marsmate-business-intelligence-private-limited-698696361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/marsmatebipvt?utm_source=qr&igsh=N2Jhb3lnaXRtMG15">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>      
+      <div class="col-3 col-lg-3 mx-auto info_col">
+        <div class="info_link_box">
+          <h4>
+            Links
+          </h4>
+          <div class="info_links">
+            <a class="active" href="index.html">
+              Home
+            </a>
+            <a class="" href="about.html">
+              About
+            </a>
+            <a class="" href="service.html">
+              Services
+            </a>
+            <a class="" href="why.html">
+              Why Us
+            </a>
+            <a class="" href="team.html">
+              Our Clients
+            </a>
+          </div>
+        </div>
+      </div>
+     <!-- <div class="col-md-6 col-lg-3 info_col ">
+        <h4>
+          Subscribe
+        </h4>
+        <form action="#">
+          <input type="text" placeholder="Enter email">
+          <button type="submit">
+            Subscribe
+          </button>
+        </form>
+      </div>-->
+    </div>
+  </div>
+</section>
+<!-- end info section -->
+
+<!-- footer section -->
+<section class="footer_section">
+  <div class="container">
+    <p>
+      © All Rights Reserved By
+      <a href="https://html.design/">MarsMate Business Intelligence pvt. Ltd.</a>
+    </p>
+  </div>
+</section>
+<!-- footer section -->
+
+  <!-- jQery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+  <script>
+  const products = [
+    {
+      id: 1,
+      name: "E Commerce Tech",
+      description: "Facilitates buying, selling goods and services via internet platforms",
+      price: 500000,
+      originalPrice: 550000,
+      image: "https://img.freepik.com/premium-photo/ecommerce-concept-flat-isometric-vector-illustration_734610-17547.jpg"
+    },
+    {
+      id: 2,
+      name: "School Tech",
+      description: "Enables digital, interactive, personalized learning and efficient school management.",
+      price: 210000,
+      originalPrice: 250000,
+      image: "image/School-Tech.png"
+    },
+    {
+      id: 3,
+      name: "NGO",
+      description: "Nonprofit group addressing social issues, independent of government.",
+      price: 150000,
+      originalPrice: 175000,
+      image: "image/NGO.png"
+    },
+    {
+      id: 4,
+      name: "3D Application Technology",
+      description: "Interactive software for viewing, inspecting, and manipulating 3D models.",
+      price: 290000,
+      originalPrice: 300000,
+      image: "image/3D.png"
+    },
+    {
+      id: 5,
+      name: "Transportation Technology",
+      description: "Enables movement of people and goods using innovative systems",
+      price: 250000,
+      originalPrice: 275000,
+      image: "image/Transportation-Technology.png"
+    },
+    {
+      id: 6,
+      name: "Evaluation of Property",
+      description: "Assesses property value based on the location and features.",
+      price: 240000,
+      originalPrice: 250000,
+      image: "image/Evaluation-of-Property.png"
+    },
+      {
+      id: 7,
+      name: "Vehicle Evaluation & Software Related Tech",
+      description: "Controls, optimizes, and connects vehicle systems through advanced software.",
+      price: 190000,
+      originalPrice: 200000,
+      image: "image/Vehicle-EvaluationandSoftware-related-tech.png"
+    },
+    {
+      id: 8,
+      name: "House Access through the QR Code",
+      description: "Links property information or services via scannable house code",
+      price: 230000,
+      originalPrice: 250000,
+      image: "image/QR-Code.png"
+    },
+    {
+      id: 9,
+      name: "Business & Apartment access technology",
+      description: "Controls, monitors, secures entry using smart digital authentication systems.",
+      price: 350000,
+      originalPrice: 400000,
+      image: "image/Business-and-apartment-acccess.png"
+    },
+    {
+      id: 10,
+      name: "Tech Enabler",
+      description: "Empowers insurers with scalable, automated, cloud-based digital solutions.",
+      price: 370000,
+      originalPrice: 400000,
+      image: "image/TechEnabler-platform.png"
+    },
+    {
+      id: 11,
+      name: "Ticket Booking Tech",
+      description: "Books event, travel, or service tickets through digital platform.",
+      price: 290000,
+      originalPrice: 300000,
+      image: "image/Ticket-booking.jpeg"
+    },
+    {
+      id: 12,
+      name: "Business Consultancy Tech",
+      description: "Empowers businesses with data-driven, automated, and scalable solutions.",
+      price: 170000,
+      originalPrice: 200000,
+      image: "image/Business-consultancy.png"
+    },
+    {
+      id: 13,
+      name: "Cyber Security",
+      description: "Cybersecurity is the practice of protecting systems, networks & data from unauthorized digital attacks.",
+      price: 500000,
+      originalPrice: 550000,
+      image: "image/cyber-security.png"
+    },
+    {
+      id: 14,
+      name: "Real Estate",
+      description: "Buying, selling, managing properties including land and buildings.",
+      price: 230000,
+      originalPrice: 250000,
+      image: "image/real-estate.png"
+    },
+    {
+      id: 15,
+      name: "AIML",
+      description: "Designed to create natural language chatbots using pattern-response rules.",
+      price: 600000,
+      originalPrice: 630000,
+      image: "image/AIML.png"
+    },
+    {
+      id: 16,
+      name: "Robotics & Automation",
+      description: "Designs, programs, automates machines for efficient, autonomous task execution.",
+      price: 350000,
+      originalPrice: 380000,
+      image: "image/robotics-automation.png"
+    },
+    {
+      id: 17,
+      name: "Smart Watch",
+      description: "Tracks health, displays notifications, connects devices, offers smart features.",
+      price: 1000000,
+      originalPrice: 1075000,
+      image: "image/smartwatch.png"
+    },
+    {
+      id: 18,
+      name: "Drone Tech",
+      description: "Enables autonomous or remote aerial tasks using advanced technology.",
+      price: 700000,
+      originalPrice: 730000,
+      image: "image/drone-tech.png"
+    },
+    {
+      id: 19,
+      name: "General Store",
+      description: "SSells wide variety of goods, serving daily needs in community",
+      price: 700000,
+      originalPrice: 750000,
+      image: "image/general-store.png"
+    },
+    {
+      id: 20,
+      name: "Groceries",
+      description: "Groceries are food and household items sold in retail stores.",
+      price: 190000,
+      originalPrice: 200000,
+      image: "image/groceries.png"
+    },
+    {
+      id: 21,
+      name: "Food Delivery",
+      description: "Convenient service bringing meals directly to customers’ locations.",
+      price: 230000,
+      originalPrice: 250000,
+      image: "image/food-delivery.png"
+    },
+    {
+      id: 22,
+      name: "Social Media",
+      description: "Platforms connecting people through sharing content and communication.",
+      price: 270000,
+      originalPrice: 300000,
+      image: "image/social-media.png"
+    },
+    {
+      id: 23,
+      name: "Gym Fitness",
+      description: "Builds strength, endurance, health through structured physical exercise routines.",
+      price: 190000,
+      originalPrice: 200000,
+      image: "image/gym-fitness.png"
+    },
+    {
+      id: 24,
+      name: "Sales and HR Tech",
+      description: "Streamlines sales and HR processes with automation and analytics.",
+      price: 500000,
+      originalPrice: 525000,
+      image: "image/sales-hr.png"
+    },
+    {
+      id: 25,
+      name: "Family Tech",
+      description: "Integrates technology to organize, connect, and empower family life.",
+      price: 230000,
+      originalPrice: 250000,
+      image: "image/family-tech.png"
+    },
+    
+    {
+      id: 26,
+      name: "Temple Tech",
+      description: "Enables temples to digitize management, services, donations, community engagement.",
+      price: 340000,
+      originalPrice: 350000,
+      image: "image/temple-tech.png"
+    },
+    {
+      id: 27,
+      name: "Village Tech",
+      description: "Empowers rural communities with innovative, accessible, and sustainable technology.",
+      price: 190000,
+      originalPrice: 215000,
+      image: "image/village-tech.png"
+    },
+    {
+      id: 28,
+      name: "Competitive Exams App",
+      description: "Prepares users for exams with practice, quizzes, study material.",
+      price: 190000,
+      originalPrice: 225000,
+      image: "image/exams-app.png"
+    },
+    {
+      id: 29,
+      name: "Jewelry",
+      description: "Decorative pieces crafted for adornment, style, or symbolism.",
+      price: 190000,
+      originalPrice: 215000,
+      image: "image/jewelry.png"
+    },
+    {
+      id: 30,
+      name: "Media Tech",
+      description: "Digitally delivers, updates, personalizes news using innovative technology",
+      price: 190000,
+      originalPrice: 200000,
+      image: "image/media-tech.png"
+    },
+  ];
+
+  const cart = {};
+
+  // Calculate discount dynamically
+  products.forEach(product => {
+    product.discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+  });
+
+  // Restore cart if exists
+  const storedCart = JSON.parse(sessionStorage.getItem("cart"));
+  if (storedCart) {
+    Object.assign(cart, storedCart);
+  }
+
+  function updateCartBar() {
+    const cartBar = document.getElementById('cartBar');
+    const cartCount = document.getElementById('cartCount');
+    const cartSavings = document.getElementById('cartSavings');
+    const cartIcon = document.getElementById('cartIcon');
+
+    const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+    const totalSavings = Object.values(cart).reduce((sum, item) => sum + ((item.originalPrice - item.price) * item.quantity), 0);
+
+    if (totalItems > 0) {
+      cartBar.classList.remove('d-none');
+      cartCount.textContent = `${totalItems} Item(s)`;
+      cartSavings.textContent = `You save ₹${totalSavings.toLocaleString()}`;
+      cartIcon.classList.add('cart-bounce');
+      setTimeout(() => cartIcon.classList.remove('cart-bounce'), 500);
+    } else {
+      cartBar.classList.add('d-none');
+    }
+  }
+
+  function renderProducts() {
+    const container = document.getElementById('productContainer');
+    container.innerHTML = '';
+
+    products.forEach((p) => {
+      const col = document.createElement('div');
+      col.className = 'col-lg-4 col-md-6 col-12 mb-4 d-flex justify-content-cente';
+
+      const card = document.createElement('div');
+      card.className = 'card product-card flex-fill';
+
+      card.innerHTML = `
+        <img src="${p.image}" class="product-image card-img-top" alt="${p.name}">
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="card-title font-weight-bold">${p.name}</h5>
+            <p class="text-muted small">${p.description}</p>
+            <h6>₹${p.price.toLocaleString()} <s class="text-muted">₹${p.originalPrice.toLocaleString()}</s>
+            <span class="badge badge-warning ml-2">${p.discount}% OFF</span></h6>
+          </div>
+          <div id="product-controls-${p.id}" class="action-container mt-3">
+            <button class="btn btn-add" onclick="addToCart(${p.id})">Add</button>
+          </div>
+        </div>
+      `;
+
+      col.appendChild(card);
+      container.appendChild(col);
+    });
+  }
+
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!cart[id]) {
+      cart[id] = { ...product, quantity: 1 };
+    }
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    updateProductControls(id);
+    updateCartBar();
+
+    const card = document.querySelector(`#product-controls-${id}`).closest('.product-card');
+    card.classList.add('glow-effect');
+    setTimeout(() => card.classList.remove('glow-effect'), 800);
+  }
+
+  function increaseQuantity(id) {
+    cart[id].quantity++;
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    updateProductControls(id);
+    updateCartBar();
+  }
+
+  function decreaseQuantity(id) {
+    if (cart[id].quantity > 1) {
+      cart[id].quantity--;
+    } else {
+      delete cart[id];
+    }
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+    updateProductControls(id);
+    updateCartBar();
+  }
+
+  function updateProductControls(id) {
+    const container = document.getElementById(`product-controls-${id}`);
+    const item = cart[id];
+
+    if (!item) {
+      container.innerHTML = `<button class="btn btn-add w-100" onclick="addToCart(${id})">Add</button>`;
+    } else {
+      container.innerHTML = `
+        <div class="quantity-controls w-100">
+          <button onclick="decreaseQuantity(${id})">−</button>
+          <span>${item.quantity}</span>
+          <button onclick="increaseQuantity(${id})">+</button>
+        </div>
+      `;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
+    if (storedCart) {
+      Object.keys(cart).forEach(id => updateProductControls(id));
+      updateCartBar();
+    }
+  });
+</script>
+</body>
+
+</html>
