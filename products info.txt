@@ -1,0 +1,153 @@
+1.NGO:
+
+Des: Nonprofit group addressing social issues, independent of government.
+Cost: 150000
+O.P.: 175000
+
+2.3D View Application:
+
+Des: Interactive software for viewing, inspecting, and manipulating 3D models.
+Cost: 290000
+O.P.: 300000
+
+3.Transportation Technology:
+
+Des: Enables movement of people and goods using innovative systems
+Cost: 250000
+O.P.: 275000
+
+4.Evaluation of Property:
+Des: Assesses property value based on location and features.
+Cost: 240000
+O.P.: 250000
+
+5.Vehicle Evaluation & Software Related Tech:
+Des: Controls, optimizes, and connects vehicle systems through advanced software.
+Cost: 190000
+O.P.: 200000
+
+6.QR Code through House:
+Des: Links property information or services via scannable house code
+Cost: 230000
+O.P.: 250000
+
+7.Business & apartment access technology:
+Des: Controls, monitors, secures entry using smart digital authentication systems.
+Cost: 350000
+O.P.: 400000
+
+8. E Commerce Tech:
+Des: A complete solution for online store integration.
+Cost: 500000
+O.P.: 550000
+
+9. Tech Enabler (B2B SaaS for insurers):
+Des: Empowers insurers with scalable, automated, cloud-based digital solutions
+Cost: 370000
+O.P.: 400000
+
+10. Ticket Booking Tech:
+Des: Books event, travel, or service tickets through digital platform.
+Cost: 290000
+O.P.: 300000
+
+11. Business Consultancy:
+Des: Empowers businesses with data-driven, automated, and scalable solutions.
+Cost: 170000
+O.P.: 200000
+
+12. Cyber Security:
+Des: Cybersecurity is the practice of protecting systems, networks & data from unauthorized digital attacks.
+Cost: 500000
+O.P.: 550000
+
+13. Real Estate:
+Des: Buying, selling, managing properties including land and buildings.
+Cost: 230000
+O.P.: 250000
+
+14. AIML:
+Des: Designed to create natural language chatbots using pattern-response rules.
+Cost: 600000
+O.P.: 630000
+
+15. Robotics & Automation:
+Des: Designs, programs, automates machines for efficient, autonomous task execution
+Cost: 350000
+O.P.: 380000
+
+16. Smart Watch:
+Des: Tracks health, displays notifications, connects devices, offers smart features
+Cost: 1000000
+O.P.: 1075000
+
+17. Drone Tech:
+Des: Enables autonomous or remote aerial tasks using advanced technology
+Cost: 700000
+O.P.: 730000
+
+18. General Store:
+Des: Sells wide range of everyday items for local community
+Cost: 700000
+O.P.: 750000
+
+19. Groceries:
+Des: Groceries are food and household items sold in retail stores.
+Cost: 190000
+O.P.: 200000
+
+20. Food Delivery:
+Des: Convenient service bringing meals directly to customers’ locations.
+Cost: 230000
+O.P: 250000
+
+21. Social Media:
+Des: Platforms connecting people through sharing content and communication.
+Cost: 270000
+O.P.: 300000
+
+22. Gym Fitness:
+Des: Builds strength, endurance, health through structured physical exercise routines
+Cost: 190000
+O.P.: 200000
+
+23. Sales and HR Tech:
+Des: Streamlines sales and HR processes with automation and analytics
+Cost: 500000
+O.P.: 525000
+
+24. Family Tech:
+Des: Integrates technology to organize, connect, and empower family life
+Cost: 230000
+O.P.: 250000
+
+25. Competitive Exams App:
+Des: Prepares users for exams with practice, quizzes, study material
+Cost: 190000
+O.P.: 225000
+
+26. Temple Tech:
+Des: Enables temples to digitize management, services, donations, community engagement
+Cost: 340000
+O.P: 350000
+
+27. Village Tech:
+Des: Empowers rural communities with innovative, accessible, and sustainable technology
+Cost: 190000
+O.P.: 200000
+
+28. Jewelry:
+Des: Decorative pieces crafted for adornment, style, or symbolism.
+Cost: 190000
+O.P.: 215000
+
+29. School Tech:
+
+Des: Empowering digital education platforms and tools.
+Cost: 210000
+O.P.: 250000
+
+30. Media Tech:
+Des: Digitally delivers, updates, personalizes news using innovative technology
+Cost: 190000
+O.P.: 200000
