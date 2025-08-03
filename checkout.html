@@ -372,16 +372,14 @@
       let totalItems = 0;
       let totalPrice = 0;
       let totalSaved = 0;
-
+      
       if (Object.keys(cart).length === 0) {
         summarySection.classList.add('d-none');
         emptyMessage.classList.remove('d-none');
         return;
       }
-
       summarySection.classList.remove('d-none');
       emptyMessage.classList.add('d-none');
-
       for (let id in cart) {
         const item = cart[id];
         const productTotal = item.quantity * item.price;
@@ -389,7 +387,6 @@
         totalItems += item.quantity;
         totalPrice += productTotal;
         totalSaved += savings;
-
         // Item UI
         const html = `
           <div class="checkout-item d-flex justify-content-between align-items-center mb-4 p-3">
@@ -410,7 +407,6 @@
           </div>
         `;
         container.innerHTML += html;
-
         // Summary breakdown line
         itemBreakdown.innerHTML += `
           <div class="row mb-1">
@@ -419,18 +415,15 @@
           </div>
         `;
       }
-
       document.getElementById('totalItems').textContent = totalItems;
       document.getElementById('totalPrice').textContent = `₹${totalPrice}`;
       document.getElementById('totalSaved').textContent = `₹${totalSaved}`;
     }
-
     function increaseQuantity(id) {
       cart[id].quantity++;
       sessionStorage.setItem('cart', JSON.stringify(cart));
       updateCheckoutUI();
     }
-
     function decreaseQuantity(id) {
       if (cart[id].quantity > 1) {
         cart[id].quantity--;
@@ -440,7 +433,6 @@
       sessionStorage.setItem('cart', JSON.stringify(cart));
       updateCheckoutUI();
     }
-
     function placeOrder() {
       window.location.href = 'payment.html';
     }
