@@ -1,21 +1,30 @@
-    .payment-option {
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
+   body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    .payment-option:hover {
-      background-color: #f8f9fa;
-      border-color: #28a745;
+    .message {
+      text-align: center;
     }
 
-    .payment-option input[type="radio"] {
-      margin-right: 10px;
+    .message h2 {
+      color: #00204a;
     }
 
-    .pay-btn {
+    .btn-back {
       margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00204a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-back:hover {
+      background-color: #001c3a;
     }
