@@ -1,0 +1,10 @@
+Razor pay account settings:
+https://dashboard.razorpay.com/app/account-settings
+includes:
+payment methods
+website and app settings
+business settings
+payments and refunds
+bank account and settlements
+notificaton settings
+checkout settings

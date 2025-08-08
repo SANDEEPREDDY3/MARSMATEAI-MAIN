@@ -1,34 +1,55 @@
-   // Fetch cart details from sessionStorage to calculate amount
-    const cart = JSON.parse(sessionStorage.getItem('cart')) || {};
-    let totalAmount = 0;
+// Get cart details from sessionStorage
+const cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+let totalAmount = 0;
 
-    for (let id in cart) {
-      totalAmount += cart[id].quantity * cart[id].price;
+for (let id in cart) {
+  totalAmount += cart[id].quantity * cart[id].price;
+}
+
+// Create Razorpay order on backend
+fetch("http://localhost:5000/create-order", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    amount: totalAmount * 100 // Convert to paisa (₹100 = 10000)
+  })
+})
+  .then(res => res.json())
+  .then(data => {
+    if (!data.order) {
+      throw new Error("Order creation failed");
     }
 
     const options = {
-      key: "rzp_live_2sE0V1MKb66dax", // Your test API Key
-      amount: totalAmount * 100, // in paisa (₹100 = 10000 paisa)
+      key: "rzp_live_2sE0V1MKb66dax", // ✅ Your LIVE key
+      amount: data.order.amount,
       currency: "INR",
       name: "Tech Store",
       description: "E-commerce Checkout",
-      image: "https://cdn-icons-png.flaticon.com/512/891/891462.png", // optional logo
+      image: "https://cdn-icons-png.flaticon.com/512/891/891462.png",
+      order_id: data.order.id, // ✅ Mandatory for auto-capture
+
       handler: function (response) {
         document.getElementById("paymentStatus").innerHTML = `
-          <h2>Payment Successful</h2>
+          <h2>Your Payment is Successful</h2>
           <p>Payment ID: ${response.razorpay_payment_id}</p>
           <button class="btn-back" onclick="goHome()">Back to Home</button>
         `;
-        sessionStorage.removeItem('cart'); // clear cart
+        sessionStorage.removeItem('cart');
       },
+
       prefill: {
         name: "Sandeep Reddy Gurrala",
         email: "sandeep@example.com",
         contact: "9347552146"
       },
+
       theme: {
         color: "#00204a"
       },
+
       modal: {
         ondismiss: function () {
           document.getElementById("paymentStatus").innerHTML = `
@@ -40,14 +61,22 @@
     };
 
     const rzp = new Razorpay(options);
-    window.onload = function () {
-      rzp.open();
-    };
+    rzp.open();
+  })
+  .catch(err => {
+    console.error("Error:", err);
+    document.getElementById("paymentStatus").innerHTML = `
+      <h2>Something went wrong!</h2>
+      <p>${err.message}</p>
+      <button class="btn-back" onclick="goBack()">Try Again</button>
+    `;
+  });
 
-    function goHome() {
-      window.location.href = "productpage.html";
-    }
+// Navigation functions
+function goHome() {
+  window.location.href = "productpage.html";
+}
 
-    function goBack() {
-      window.location.href = "checkout.html";
-    }
+function goBack() {
+  window.location.href = "checkout.html";
+}
