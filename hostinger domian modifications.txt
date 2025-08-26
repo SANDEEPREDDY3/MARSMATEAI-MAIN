@@ -1,0 +1,10 @@
+https://linux11.hostguy.com:2083/cpsess7978153328/frontend/jupiter/zone_editor/index.html#/manage?domain=mars-mate.com
+
+
+1.A
+
+23.88.0.53 coverted to 216.24.57.1
+
+
+2.CNAME should be www.mars-mate.com but now its frontend-qzk8.onrender.com
+
