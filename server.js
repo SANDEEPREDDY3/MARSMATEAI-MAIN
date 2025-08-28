@@ -1,4 +1,6 @@
-const express = require("express");
+
+
+/* const express = require("express");
 const Razorpay = require("razorpay");
 const cors = require("cors");
 
@@ -35,3 +37,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
+*/
